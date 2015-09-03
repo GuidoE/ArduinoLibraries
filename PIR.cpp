@@ -11,9 +11,11 @@ PIR::PIR(int pin=7, int led=13, int calibration=30) {
 	pinMode(ledPin, OUTPUT);
 	digitalWrite(pirPin, LOW);
 	presence = false;
+	takeLowTime = false;
+	lowIn = 0;
 };
 
-/*PIR::PIR(int pin=7, int led=13, int calibration=30, unsigned long int pauseInterval=5000) {
+PIR::PIR(int pin=7, int led=13, int calibration=30, unsigned long int pauseInterval=5000) {
 	pirPin = pin;
 	ledPin = led;
 	calibrationTime = calibration;
@@ -22,9 +24,15 @@ PIR::PIR(int pin=7, int led=13, int calibration=30) {
 	pinMode(pirPin, INPUT);
 	pinMode(ledPin, OUTPUT);
 	digitalWrite(pirPin, LOW);
-};*/
+	takeLowTime = false;
+	lowIn = 0;
+	presence = false;
+};
 
 void PIR::Motion() {
+	/**
+	 * This method uses a software delay after the PIR outputs LOW to signal motion stop.
+	 */
 	if (digitalRead(pirPin) == HIGH) {
 		digitalWrite(ledPin, HIGH); //the led visualizes the sensors output pin state
 		if (lockLow) {
@@ -59,4 +67,3 @@ void PIR::Motion() {
 	}
 
 }
-;

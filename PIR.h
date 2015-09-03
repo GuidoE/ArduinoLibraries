@@ -13,7 +13,7 @@ class PIR {
 
 public:
 	PIR(int pin, int led, int calibration);
-	//PIR(int pin, int led, int calibration, long unsigned int pauseInterval);
+	PIR(int pin, int led, int calibration, long unsigned int pauseInterval);
 	int pirPin;
 	int ledPin;
 
