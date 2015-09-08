@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "PIR.h"
 
-PIR::PIR(int pin=7, int led=13, int calibration=30) {
+PIR::PIR(int pin, int led=13, int calibration=30) {
 	pirPin = pin;
 	ledPin = led;
 	calibrationTime = calibration;
@@ -15,7 +15,7 @@ PIR::PIR(int pin=7, int led=13, int calibration=30) {
 	lowIn = 0;
 };
 
-PIR::PIR(int pin=7, int led=13, int calibration=30, unsigned long int pauseInterval=5000) {
+PIR::PIR(int pin, int led=13, int calibration=30, unsigned long int pauseInterval=5000) {
 	pirPin = pin;
 	ledPin = led;
 	calibrationTime = calibration;

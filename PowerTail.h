@@ -25,7 +25,8 @@ public:
 
 	void Power();
 	void ManualPower();
-
+	void TurnOn();
+	void TurnOff();
 };
 
 

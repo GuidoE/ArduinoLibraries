@@ -28,13 +28,9 @@ void PowerTail::Power() {
 		powerOn = !powerOn;
 
 		if (powerOn) {
-			digitalWrite(ledPin, HIGH);
-			digitalWrite(powerPin, LOW);
-			Serial.println("ON");
+			TurnOn();
 		} else {
-			digitalWrite(ledPin, LOW);
-			digitalWrite(powerPin, HIGH);
-			Serial.println("OFF");
+			TurnOff();
 		}
 
 		//read all the bytes in the serial buffer (we don't care about the contents of the data)
@@ -44,14 +40,21 @@ void PowerTail::Power() {
 }
 
 void PowerTail::ManualPower() {
-	powerOn = !powerOn;
-	if (powerOn) {
-		digitalWrite(ledPin, HIGH);
-		digitalWrite(powerPin, LOW);
-		Serial.println("PowerTail ON");
+	if (digitalRead(powerPin) == LOW) {
+		TurnOff();
 	} else {
-		digitalWrite(ledPin, LOW);
-		digitalWrite(powerPin, HIGH);
-		Serial.println("PowerTail OFF");
+		TurnOn();
 	}
+}
+
+void PowerTail::TurnOn() {
+	digitalWrite(powerPin, LOW);
+	digitalWrite(ledPin, HIGH);
+	Serial.println("PowerTail ON");
+}
+
+void PowerTail::TurnOff() {
+	digitalWrite(powerPin, HIGH);
+	digitalWrite(ledPin, LOW);
+	Serial.println("PowerTail OFF");
 }
